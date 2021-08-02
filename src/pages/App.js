@@ -1,9 +1,9 @@
-import "~styles/colors.css";
+import BackgroundAnimated from "../components/BackgroundAnimated";
 
 function App() {
   return (
     <div className='App'>
-      <h1 className='text-9xl test-color'>Test</h1>
+      <BackgroundAnimated />
     </div>
   );
 }
