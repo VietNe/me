@@ -5,8 +5,46 @@ module.exports = {
     backgroundColor: (theme) => ({
       ...theme("colors"),
       "pw-grey": "#333333",
+      "pw-grey-100": "rgba(255, 255, 255, 0.87)",
     }),
-    extend: {},
+    textColor: (theme) => ({
+      ...theme("colors"),
+      "pw-grey": "#333333",
+    }),
+    maxHeight: {
+      0: "0",
+      "1/4": "25%",
+      "1/2": "50%",
+      "3/4": "75%",
+      full: "100%",
+      "1/2-screen": "50vh",
+      "3/4-screen": "75vh",
+    },
+    zIndex: {
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      10: 10,
+      20: 20,
+      30: 30,
+      40: 40,
+      50: 50,
+      25: 25,
+      50: 50,
+      75: 75,
+      100: 100,
+      auto: "auto",
+    },
+    extend: {
+      backdropBlur: {
+        xs: "1.2px",
+      },
+      inset: {
+        "1/24": "4.16666666667%",
+      },
+    },
   },
   variants: {
     extend: {},

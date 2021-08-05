@@ -1,0 +1,151 @@
+import React, { useState } from "react";
+import { Div } from "~components";
+import { landingPageBody } from "~constants/landingConstants";
+import "~styles/pages/Landing.css";
+import HeaderDescription from "./HeaderDescription";
+import HeaderLinks from "./HeaderLinks";
+import ProfilePic from "./ProfilePic";
+import Header from "./Header";
+
+const Landing = () => {
+  const [bodyType, setBodyType] = useState(landingPageBody.NONE);
+  const [isFullScreen, setFullScreen] = useState(true);
+  const [isFirstTime, setFirstTime] = useState(true);
+  const [showDescription, setShowDescription] = useState(true);
+  const [clientX, setClientX] = useState(0);
+  const [clientY, setClientY] = useState(0);
+
+  //-------------------------------------------Header Logic-------------------------------------------
+
+  const onClickProfilePic = () => {
+    if (!isFullScreen) showFullScreen();
+  };
+
+  const onClickProject = () => {
+    setBodyType(landingPageBody.PROJECT);
+    if (isFullScreen) hideFullScreen();
+  };
+
+  const onClickTimeline = () => {
+    setBodyType(landingPageBody.TIMELINE);
+    if (isFullScreen) hideFullScreen();
+  };
+
+  const showFullScreen = () => {
+    setFullScreen(true);
+    // setBodyType(landingPageBody.NONE);
+  };
+
+  const hideFullScreen = () => {
+    setShowDescription(false);
+  };
+
+  //-------------------------------------------Body Logic-------------------------------------------
+
+  //   const getBodyContent = (bodyType) => {
+  //     return (props) => (
+  //       <Div fillParent style={props} className={styles.body_content_container}>
+  //         {bodyType == landingPageBody.PROJECT && <Projects />}
+  //         {bodyType == landingPageBody.TIMELINE && <Timeline />}
+  //       </Div>
+  //     );
+  //   };
+
+  //   const getBodyAnimation = () => {
+  //     let fromAnimation, enterAnimation, leaveAnimation;
+
+  //     if (bodyType == landingPageBody.NONE) {
+  //       fromAnimation = {
+  //         opacity: 1,
+  //         transform: "translate(0px, 100px)",
+  //       };
+  //       enterAnimation = {
+  //         opacity: 1,
+  //         transform: "translate(0px, 10px)",
+  //       };
+  //       leaveAnimation = {
+  //         opacity: 0,
+  //         transform: "translate(0px, 100px)",
+  //       };
+  //     } else {
+  //       fromAnimation = {
+  //         opacity: 0,
+  //         transform: `translate(${
+  //           bodyType == landingPageBody.TIMELINE ? -300 : 300
+  //         }px, 0px)`,
+  //       };
+  //       enterAnimation = {
+  //         opacity: 1,
+  //         transform: "translate(0px, 0px)",
+  //       };
+  //       leaveAnimation = {
+  //         opacity: 0,
+  //         transform: `translate(${
+  //           bodyType == landingPageBody.TIMELINE ? 300 : -300
+  //         }px, 0px)`,
+  //       };
+  //     }
+
+  //     return { fromAnimation, enterAnimation, leaveAnimation };
+  //   };
+
+  return (
+    <Div
+      className='w-full h-full overflow-hidden relative'
+      onMouseMove={
+        bodyType === landingPageBody.NONE
+          ? ({ clientX: x, clientY: y }) => {
+              setClientX(x);
+              setClientY(y);
+            }
+          : null
+      }>
+      {/* <Div fillParent className={styles.body_container}>
+        <Transition
+          items={bodyType}
+          key={(bodyType) => bodyType}
+          from={getBodyAnimation().fromAnimation}
+          enter={getBodyAnimation().enterAnimation}
+          leave={getBodyAnimation().leaveAnimation}>
+          {(bodyType) => getBodyContent(bodyType)}
+        </Transition>
+      </Div> */}
+
+      <Header
+        {...{
+          setShowDescription,
+          setFullScreen,
+          isFirstTime,
+          isFullScreen,
+          showDescription,
+          clientX,
+          clientY,
+        }}
+      />
+
+      <HeaderDescription
+        {...{ showDescription, onClickTimeline, onClickProject, isFirstTime }}
+        className='header_description'
+      />
+
+      <ProfilePic
+        {...{
+          setFirstTime,
+          isFirstTime,
+          isFullScreen,
+          onClickProfilePic,
+        }}
+      />
+
+      <HeaderLinks
+        key='header-links'
+        isFullScreen={isFullScreen}
+        bodyType={bodyType}
+        onClickTimeline={onClickTimeline}
+        onClickProject={onClickProject}
+      />
+    </Div>
+  );
+};
+
+export default Landing;
