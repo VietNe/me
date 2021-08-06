@@ -3,15 +3,21 @@ import React, { useEffect, useState } from "react";
 import { animated, Transition } from "react-spring";
 import { Div } from "~components";
 import { timelineListValue } from "~constants/timelineConstants";
+import TimelineSelector from "~containers/TimelineSelector";
 
 const Timeline = () => {
-  const [selectedTimelineId, setSelectedTimelineId] = useState("tailoredtech");
+  const [selectedTimelineId, setSelectedTimelineId] = useState("gocodee");
   const [selectionNext, setSelectionNext] = useState(true);
-  let [isFirstAnimation, setFirstAnimation] = useState(true);
+  const [isFirstAnimation, setFirstAnimation] = useState(true);
 
   const timeline = find(timelineListValue, (timelineItem) => {
     return timelineItem.id === selectedTimelineId;
   });
+
+  const onTimelineSelected = ({ selectedId, selectionNext }) => {
+    setSelectedTimelineId(selectedId);
+    setSelectionNext(selectionNext);
+  };
 
   const getImageBackgroundAnimation = (selectionNext) => {
     if (isFirstAnimation) {
@@ -45,7 +51,7 @@ const Timeline = () => {
       row
       fillParent
       align='stretch'
-      className='timeline-container pt-20 pl-20 relative overflow-hidden'>
+      className='timeline-container pt-20 md:pl-20 px-6 md:px-0 relative overflow-hidden'>
       <Transition
         items={timeline}
         keys={(timeline) => timeline.id}
@@ -63,6 +69,14 @@ const Timeline = () => {
       </Transition>
       <div className='absolute inset-0 bg-pw-grey-70 z-1'></div>
       <div className='bg-gradient-to-r from-white-10 to-black-0 absolute inset-y-0 left-0 w-screen-30 z-2'></div>
+
+      <Div className='w-full h-full z-3 relative'>
+        <TimelineSelector
+          selectedId={selectedTimelineId}
+          listValue={timelineListValue}
+          onItemSelected={onTimelineSelected}
+        />
+      </Div>
     </Div>
   );
 };

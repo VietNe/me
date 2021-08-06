@@ -4,7 +4,7 @@ import goCodeeBackgroundImage from "~assets/images/background/background-image-g
 
 export const timelineListValue = [
   {
-    id: "tailoredtech",
+    id: "gocodee",
     companyName: "Gocodee",
     name: "Gocodee",
     link: "",
@@ -14,7 +14,37 @@ export const timelineListValue = [
     roleDetail: "",
     companyDetail: "",
     firstLogo: goCodeeLogoFirst,
-    restMargin: 34,
+
+    backgroundImage: goCodeeBackgroundImage,
+    projects: ["Project1", "Project2", "Project3", "Project4", "Project5"],
+  },
+  {
+    id: "gocodee2",
+    companyName: "Gocodee12321",
+    name: "Gocodee12321",
+    link: "",
+    position: "Web Developer, Mobile Developer",
+    duration: "May 2018 - Now",
+    location: "HCM City, Viet Nam",
+    roleDetail: "",
+    companyDetail: "",
+    firstLogo: goCodeeLogoFirst,
+
+    backgroundImage: goCodeeBackgroundImage,
+    projects: ["Project1", "Project2", "Project3", "Project4", "Project5"],
+  },
+  {
+    id: "gocodee3",
+    companyName: "Gocodee123123213",
+    name: "Gocodee123123213",
+    link: "",
+    position: "Web Developer, Mobile Developer",
+    duration: "May 2018 - Now",
+    location: "HCM City, Viet Nam",
+    roleDetail: "",
+    companyDetail: "",
+    firstLogo: goCodeeLogoFirst,
+
     backgroundImage: goCodeeBackgroundImage,
     projects: ["Project1", "Project2", "Project3", "Project4", "Project5"],
   },
