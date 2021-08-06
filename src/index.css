@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button {
+  font-size: 14px;
+  border-radius: 7.8px;
+  margin-top: 22px;
+  border: solid 1px white;
+  padding: 3px 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.1s linear;
+  text-transform: capitalize;
+}
+
+.button:hover,
+.button:focus {
+  opacity: 0.7;
+  transform: scale(1.1);
+}

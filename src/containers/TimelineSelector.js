@@ -25,7 +25,7 @@ const TimelineSelector = ({
 
   return (
     <div
-      className={`absolute top-0 left-0 w-full md:w-screen-30 flex-row bg-pw-grey-70 md:bg-transparent md:rounded-none md:p-0 flex-wrap justify-between rounded-3xl p-5 md:flex-col items-start flex ${className}`}>
+      className={`md:absolute mb-5 top-0 left-0 w-full md:w-screen-30 flex-row bg-pw-grey-70 md:bg-transparent md:rounded-none md:p-0 justify-between rounded-3xl p-3 md:flex-col items-start flex ${className}`}>
       {map(listValue, (item, index) => (
         <Spring
           key={item.id}
@@ -46,7 +46,11 @@ const TimelineSelector = ({
                 row
                 align
                 justify
-                className={`h-10 rounded-full bg-pw-grey shadow-xl relative cursor-pointer transform transition-all duration-500 m-2 md:m-0  ${
+                className={`${
+                  item.id === selectedId
+                    ? "md:scale-100 scale-110 md:bg-pw-grey md:bg-opacity-100 bg-white bg-opacity-10"
+                    : "bg-pw-grey"
+                } h-10 md:w-auto w-10 rounded-full shadow-xl relative cursor-pointer transform transition-all duration-500 m-2 md:m-0  ${
                   item.id !== selectedId ? "hover:scale-110" : ""
                 }`}
                 onClick={() => onClickitemItem(item)}>
@@ -61,7 +65,7 @@ const TimelineSelector = ({
 
                 <animated.div
                   style={styles}
-                  className='whitespace-nowrap text-white select-none font-bold truncate'>
+                  className='whitespace-nowrap text-white select-none font-bold truncate hidden md:block'>
                   {item.name}
                 </animated.div>
               </Div>

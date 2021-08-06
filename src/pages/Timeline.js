@@ -4,6 +4,7 @@ import { animated, Transition } from "react-spring";
 import { Div } from "~components";
 import { timelineListValue } from "~constants/timelineConstants";
 import TimelineSelector from "~containers/TimelineSelector";
+import RightContainer from "~containers/RightContainer";
 
 const Timeline = () => {
   const [selectedTimelineId, setSelectedTimelineId] = useState("gocodee");
@@ -55,6 +56,7 @@ const Timeline = () => {
       <Transition
         items={timeline}
         keys={(timeline) => timeline.id}
+        config={{ mass: 1, tension: 280, friction: 80 }}
         from={getImageBackgroundAnimation(selectionNext).from}
         enter={getImageBackgroundAnimation(selectionNext).enter}
         leave={getImageBackgroundAnimation(selectionNext).leave}>
@@ -76,6 +78,46 @@ const Timeline = () => {
           listValue={timelineListValue}
           onItemSelected={onTimelineSelected}
         />
+        <div className='w-full h-full flex flex-wrap items-start mb-6 md:mb-0'>
+          <div className='w-full md:h-full flex mb-3 md:mb-0 md:pb-10 flex-col md:w-35'>
+            <div className='flex-1 hidden md:block'></div>
+            <Transition
+              items={timeline}
+              key={timeline.id}
+              from={{ opacity: 0 }}
+              enter={{ opacity: 1 }}
+              leave={{ opacity: 0 }}>
+              {(styles, item) =>
+                item && (
+                  <Div
+                    animate
+                    style={styles}
+                    className='text-white md:text-left text-center'>
+                    <div className='md:text-4xl text-xl font-bold break-words'>
+                      {timeline.companyName}
+                    </div>
+
+                    <Div className='description_container mt-3 ml-4 items-center md:items-start'>
+                      <div className='text-sm break-words'>
+                        {timeline.duration}
+                      </div>
+                      <div className='text-sm break-words mt-2'>
+                        {timeline.position}
+                      </div>
+                      <div className='text-sm break-words mt-2'>
+                        {timeline.location}
+                      </div>
+                      <div className='button'>view more</div>
+                    </Div>
+                  </Div>
+                )
+              }
+            </Transition>
+          </div>
+          <div className='w-full md:h-full md:w-65'>
+            <RightContainer item={timeline} />
+          </div>
+        </div>
       </Div>
     </Div>
   );

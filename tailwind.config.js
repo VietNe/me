@@ -17,15 +17,7 @@ module.exports = {
       "white-10": "rgba(255,255,255,0.1)",
       "black-0": "rgba(0,0,0,0)",
     }),
-    maxHeight: {
-      0: "0",
-      "1/4": "25%",
-      "1/2": "50%",
-      "3/4": "75%",
-      full: "100%",
-      "1/2-screen": "50vh",
-      "3/4-screen": "75vh",
-    },
+
     zIndex: {
       0: 0,
       1: 1,
@@ -44,8 +36,28 @@ module.exports = {
       auto: "auto",
     },
     extend: {
+      maxHeight: {
+        0: "0",
+        "1/4": "25%",
+        "1/2": "50%",
+        "3/4": "75%",
+        full: "100%",
+        "1/2-screen": "50vh",
+        "3/4-screen": "75vh",
+      },
       width: {
         "screen-30": "30vw",
+        35: "35%",
+        65: "65%",
+      },
+      heigt: {
+        0: "0",
+        "1/4": "25%",
+        "1/2": "50%",
+        "3/4": "75%",
+        full: "100%",
+        "1/2-screen": "50vh",
+        "3/4-screen": "75vh",
       },
       backdropBlur: {
         xs: "1.2px",
