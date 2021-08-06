@@ -45,8 +45,8 @@ const HeaderLinks = ({
           row
           align
           justify='space_between'
-          style={{ ...styles, height: "calc(20px + 2.75rem)" }}
-          className={`absolute top-0 inset-x-0 z-1 py-0 px-5 pr-28 ${
+          style={{ ...styles, height: "calc(30px + 2.75rem)" }}
+          className={`absolute top-0 inset-x-0 z-1 py-0 px-5 pr-20 ${
             showMenu ? "z-2" : ""
           }`}>
           <Div
@@ -70,8 +70,6 @@ const HeaderLinks = ({
               className='backdrop-filter backdrop-blur-xs fixed top-0 left-0 h-screen w-screen z-3 bg-pw-grey bg-opacity-10'
               onClick={() => setMenuState(!showMenu)}>
               <div
-                align
-                row
                 style={{ marginTop: "calc(20px + 2.75rem)" }}
                 className='speech_bubble_container bg-white ml-3 relative inline-block px-5 py-4 rounded-md'
                 onClick={(event) => event.stopPropagation()}>

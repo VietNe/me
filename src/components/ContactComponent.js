@@ -15,27 +15,47 @@ const ContactComponent = ({ className, isWhite, hideResume }) => {
       <a
         className='cursor-pointer transform transition-all duration-500 hover:scale-125 hover:opacity-70'
         target='_blank'
-        href=''>
-        <img src={isWhite ? iconGithubWhite : iconGithub} className='w-4' />
+        rel='noreferrer'
+        href='/#'>
+        <img
+          src={isWhite ? iconGithubWhite : iconGithub}
+          className='w-4'
+          alt=''
+        />
       </a>
       <a
         className='ml-6 cursor-pointer transform transition-all duration-500 hover:scale-125 hover:opacity-70'
         target='_blank'
-        href=''>
-        <img src={isWhite ? iconLinkedInWhite : iconLinkedIn} className='w-4' />
+        rel='noreferrer'
+        href='/#'>
+        <img
+          src={isWhite ? iconLinkedInWhite : iconLinkedIn}
+          className='w-4'
+          alt=''
+        />
       </a>
       <a
         className='ml-6 cursor-pointer transform transition-all duration-500 hover:scale-125 hover:opacity-70'
         target='_blank'
+        rel='noreferrer'
         href='mailto:nqviet.dev@gmail.com'>
-        <img src={isWhite ? iconEmailWhite : iconEmail} className='w-4' />
+        <img
+          src={isWhite ? iconEmailWhite : iconEmail}
+          className='w-4'
+          alt=''
+        />
       </a>
       {!hideResume && (
         <a
           className='ml-6 cursor-pointer transform transition-all duration-500 hover:scale-125 hover:opacity-70'
           target='_blank'
-          href=''>
-          <img src={isWhite ? iconResumeWhite : iconResume} className='w-4' />
+          rel='noreferrer'
+          href='/#'>
+          <img
+            src={isWhite ? iconResumeWhite : iconResume}
+            className='w-4'
+            alt=''
+          />
         </a>
       )}
     </Div>

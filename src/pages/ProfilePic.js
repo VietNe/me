@@ -16,7 +16,7 @@ const ProfilePic = ({
   const springTranslateFrom =
     "translate(calc(5.5rem - 50vw), calc(50vh - 250px)) scale(1)";
   const springTranslateTo =
-    "translate(calc(-2.75rem - 0vw), calc(0vh - -10px)) scale(0.25)";
+    "translate(calc(-1.25rem - 0vw), calc(0vh - -15px)) scale(0.25)";
 
   const shadowFrom = "0px 5px 12px 3px rgba(0, 0, 0, 0.35)";
   const shadowTo = "0px 5px 12px 3px rgba(0, 0, 0, 0)";

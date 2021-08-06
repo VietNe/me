@@ -6,6 +6,9 @@ import HeaderDescription from "./HeaderDescription";
 import HeaderLinks from "./HeaderLinks";
 import ProfilePic from "./ProfilePic";
 import Header from "./Header";
+import Projects from "./Projects";
+import Timeline from "./Timeline";
+import { Transition } from "react-spring";
 
 const Landing = () => {
   const [bodyType, setBodyType] = useState(landingPageBody.NONE);
@@ -42,52 +45,43 @@ const Landing = () => {
 
   //-------------------------------------------Body Logic-------------------------------------------
 
-  //   const getBodyContent = (bodyType) => {
-  //     return (props) => (
-  //       <Div fillParent style={props} className={styles.body_content_container}>
-  //         {bodyType == landingPageBody.PROJECT && <Projects />}
-  //         {bodyType == landingPageBody.TIMELINE && <Timeline />}
-  //       </Div>
-  //     );
-  //   };
+  const getBodyAnimation = () => {
+    let fromAnimation, enterAnimation, leaveAnimation;
 
-  //   const getBodyAnimation = () => {
-  //     let fromAnimation, enterAnimation, leaveAnimation;
+    if (bodyType === landingPageBody.NONE) {
+      fromAnimation = {
+        opacity: 0,
+        transform: "translate(0px, 100px)",
+      };
+      enterAnimation = {
+        opacity: 1,
+        transform: "translate(0px, 0px)",
+      };
+      leaveAnimation = {
+        opacity: 0,
+        transform: "translate(0px, 100px)",
+      };
+    } else {
+      fromAnimation = {
+        opacity: 0,
+        transform: `translate(${
+          bodyType === landingPageBody.TIMELINE ? -300 : 300
+        }px, 0px)`,
+      };
+      enterAnimation = {
+        opacity: 1,
+        transform: "translate(0px, 0px)",
+      };
+      leaveAnimation = {
+        opacity: 0,
+        transform: `translate(${
+          bodyType === landingPageBody.TIMELINE ? 300 : -300
+        }px, 0px)`,
+      };
+    }
 
-  //     if (bodyType == landingPageBody.NONE) {
-  //       fromAnimation = {
-  //         opacity: 1,
-  //         transform: "translate(0px, 100px)",
-  //       };
-  //       enterAnimation = {
-  //         opacity: 1,
-  //         transform: "translate(0px, 10px)",
-  //       };
-  //       leaveAnimation = {
-  //         opacity: 0,
-  //         transform: "translate(0px, 100px)",
-  //       };
-  //     } else {
-  //       fromAnimation = {
-  //         opacity: 0,
-  //         transform: `translate(${
-  //           bodyType == landingPageBody.TIMELINE ? -300 : 300
-  //         }px, 0px)`,
-  //       };
-  //       enterAnimation = {
-  //         opacity: 1,
-  //         transform: "translate(0px, 0px)",
-  //       };
-  //       leaveAnimation = {
-  //         opacity: 0,
-  //         transform: `translate(${
-  //           bodyType == landingPageBody.TIMELINE ? 300 : -300
-  //         }px, 0px)`,
-  //       };
-  //     }
-
-  //     return { fromAnimation, enterAnimation, leaveAnimation };
-  //   };
+    return { fromAnimation, enterAnimation, leaveAnimation };
+  };
 
   return (
     <Div
@@ -100,16 +94,27 @@ const Landing = () => {
             }
           : null
       }>
-      {/* <Div fillParent className={styles.body_container}>
+      <Div fillParent className='body_container'>
         <Transition
           items={bodyType}
-          key={(bodyType) => bodyType}
+          key={bodyType}
           from={getBodyAnimation().fromAnimation}
           enter={getBodyAnimation().enterAnimation}
           leave={getBodyAnimation().leaveAnimation}>
-          {(bodyType) => getBodyContent(bodyType)}
+          {(styles, item) =>
+            item && (
+              <Div
+                animate
+                fillParent
+                style={styles}
+                className='body_content_container'>
+                {bodyType === landingPageBody.PROJECT && <Projects />}
+                {bodyType === landingPageBody.TIMELINE && <Timeline />}
+              </Div>
+            )
+          }
         </Transition>
-      </Div> */}
+      </Div>
 
       <Header
         {...{

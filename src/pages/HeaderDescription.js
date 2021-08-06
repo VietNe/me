@@ -39,7 +39,7 @@ const HeaderDescription = ({
               {/* <br/><br/> In my spare time, I usually read or play video games but mostly i try to work on new ideas and learn. */}
             </div>
 
-            <Div row justify align className='mt-8'>
+            <Div row justify align className='mt-8 flex-wrap'>
               Checkout my
               <Div
                 align
