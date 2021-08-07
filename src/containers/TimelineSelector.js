@@ -23,9 +23,14 @@ const TimelineSelector = ({
     }
   };
 
+  console.log(listValue);
   return (
     <div
-      className={`md:absolute mb-5 top-0 left-0 w-full md:w-screen-30 flex-row bg-pw-grey-70 md:bg-transparent md:rounded-none md:p-0 justify-between rounded-3xl p-3 md:flex-col items-start flex ${className}`}>
+      className={`md:absolute mb-5 top-0 left-0 w-full flex-row bg-pw-grey-70  md:w-screen-30 ${
+        listValue.length <= 5
+          ? "md:p-0 md:bg-transparent md:flex-col md:rounded-none "
+          : ""
+      } justify-center flex-wrap rounded-3xl p-3 items-start flex z-3 ${className}`}>
       {map(listValue, (item, index) => (
         <Spring
           key={item.id}
@@ -34,12 +39,14 @@ const TimelineSelector = ({
             maxWidth: item.id === selectedId ? 110 : 0,
             opacity: item.id === selectedId ? 1 : 0,
             paddingRight: item.id === selectedId ? 10 : 0,
-            marginLeft: "2.5rem",
           }}>
           {(styles) => (
             <Fragment>
               {index !== 0 && (
-                <div className='w-1.5 h-6 -my-px mx-4 bg-pw-grey z-1 shadow-2xl hidden md:block'></div>
+                <div
+                  className={` ${
+                    listValue.length <= 5 ? "md:block" : "md:hidden"
+                  } w-1.5 h-6 -my-px mx-4 bg-pw-grey z-1 shadow-2xl hidden md:block`}></div>
               )}
               <Div
                 animate
@@ -48,24 +55,32 @@ const TimelineSelector = ({
                 justify
                 className={`${
                   item.id === selectedId
-                    ? "md:scale-100 scale-110 md:bg-pw-grey md:bg-opacity-100 bg-white bg-opacity-10"
+                    ? `md:scale-100 scale-110 md:bg-pw-grey md:bg-opacity-100 bg-white bg-opacity-10`
                     : "bg-pw-grey"
-                } h-10 md:w-auto w-10 rounded-full shadow-xl relative cursor-pointer transform transition-all duration-500 m-2 md:m-0  ${
-                  item.id !== selectedId ? "hover:scale-110" : ""
-                }`}
+                } h-10 md:w-auto w-10 rounded-full shadow-xl relative cursor-pointer transform transition-all duration-500 ${
+                  listValue.length <= 5 ? "md:mx-0 md:my-0" : "md:mx-3"
+                } mx-3 my-2 ${item.id !== selectedId ? "hover:scale-110" : ""}`}
                 onClick={() => onClickitemItem(item)}>
                 <Div
                   animate
                   row
                   align
                   justify
-                  className='absolute top-0 left-0 w-10 h-10'>
+                  className={` w-10 h-10 ${
+                    listValue.length <= 5
+                      ? ""
+                      : item.id === selectedId
+                      ? "bg-white bg-opacity-10 rounded-full"
+                      : ""
+                  }`}>
                   <img className='h-6' src={item.firstLogo} alt='logo' />
                 </Div>
 
                 <animated.div
                   style={styles}
-                  className='whitespace-nowrap text-white select-none font-bold truncate hidden md:block'>
+                  className={`whitespace-nowrap text-white select-none font-bold truncate hidden ${
+                    listValue.length <= 5 ? "md:block" : "md:hidden"
+                  }`}>
                   {item.name}
                 </animated.div>
               </Div>
