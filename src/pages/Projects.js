@@ -77,7 +77,7 @@ const Projects = () => {
                     animate
                     style={styles}
                     className='text-white md:text-left text-center'>
-                    <div className='md:text-4xl text-xl font-bold break-words'>
+                    <div className='md:text-4xl text-xl font-black break-words'>
                       {tech.name}
                     </div>
 

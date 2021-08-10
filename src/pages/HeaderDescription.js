@@ -29,13 +29,14 @@ const HeaderDescription = ({
         item && (
           <Div
             animate
-            style={styles}
-            className='max-h-1/2-screen bg-pw-grey-100 text-pw-grey shadow-2xl overflow-auto text-sm rounded-3xl px-10 py-5 absolute z-1 left-1/24 md:left-1/4 md:w-1/2 w-11/12 pt-28'>
+            style={{ ...styles, maxHeight: "60vh" }}
+            className='md:max-h-1/2-screen bg-pw-grey-100 font-medium text-pw-grey shadow-2xl overflow-auto text-base rounded-3xl px-10 py-5 absolute z-1 left-1/24 md:left-1/4 md:w-1/2 w-11/12 pt-28'>
             <div className='text-center'>
-              Hi, <br />I am <b className=' '>Viet Nguyen</b>, A Web Developer
-              with 2+ years of Web Development experience on various Platforms,
-              Passionate to build Polished, Innovative and well-detailed Apps
-              with Fluid Animations to complement the Design.
+              Hi, <br />I am{" "}
+              <span className='font-bold text-red-500'>Viet Nguyen</span>, A Web
+              Developer with 2+ years of Web Development experience on various
+              Platforms, Passionate to build Polished, Innovative and
+              well-detailed Apps with Fluid Animations to complement the Design.
               {/* <br/><br/> In my spare time, I usually read or play video games but mostly i try to work on new ideas and learn. */}
             </div>
 
@@ -43,14 +44,14 @@ const HeaderDescription = ({
               Checkout my
               <Div
                 align
-                className='user_button transform hover:-translate-y-1 mx-1  font-bold cursor-pointer transition-all duration-300 '
+                className='user_button transform hover:-translate-y-1 mx-1  font-black cursor-pointer transition-all duration-300 '
                 onClick={onClickTimeline}>
                 Timeline <Underline isFirstTime={isFirstTime} />
               </Div>
               and
               <Div
                 align
-                className='user_button transform hover:-translate-y-1 mx-1  font-bold cursor-pointer transition-all duration-300 '
+                className='user_button transform hover:-translate-y-1 mx-1  font-black cursor-pointer transition-all duration-300 '
                 onClick={onClickProject}>
                 Technologies <Underline isFirstTime={isFirstTime} />
               </Div>

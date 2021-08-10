@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Div } from "~components";
 import map from "lodash/map";
+import React from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { Div } from "~components";
 
 const ProjectImageGrid = ({ projectId, canSelect, gridItemSelected }) => {
   const images = [

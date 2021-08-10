@@ -2,6 +2,7 @@ import isEmpty from "lodash/isEmpty";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { animated, useSpring } from "react-spring";
 import backIcon from "~assets/icons/icon-left-arrow-dark.png";
+import closeIcon from "~assets/icons/icon-cross.png";
 import Div from "~components/Div";
 import { projectsListValue } from "~constants/projectsConstants";
 import "~styles/pages/ProjectDetails.css";
@@ -39,7 +40,7 @@ const ProjectDetailsPage = ({
     !!listingPageImageRect && !!listingPageContainerRect;
 
   //-------------------------------------------ScrollAnimation
-  const [{ st }, set] = useSpring(() => ({ st: 0 }));
+  const [{ st }, api] = useSpring(() => ({ st: 0 }));
   let onScroll = useCallback(
     (e) => {
       // Shows/Hides header based on scroll position
@@ -48,9 +49,10 @@ const ProjectDetailsPage = ({
       } else if (e.target.scrollTop < 260 && headerShadow) {
         setHeaderShadow(false);
       }
-      set.start({ st: e.target.scrollTop });
+
+      api.start({ st: e.target.scrollTop });
     },
-    [headerShadow, set]
+    [headerShadow, api]
   ); //Update memoized callback when headerShadow state updates
   //-------------------------------------------End
 
@@ -109,13 +111,15 @@ const ProjectDetailsPage = ({
   return (
     <Div row className='fixed inset-0 z-20' style={style}>
       {showViewPagerModal && (
-        <Div className='h-screen w-screen z-40 bg-pw-grey bg-opacity-50 absolute inset-0'>
-          <img
-            src={backIcon}
-            onClick={() => toggleViewPager(false)}
-            className='w-5'
-            alt='close view pager'
-          />
+        <Div className='h-screen w-screen z-40 bg-pw-grey bg-opacity-50 absolute inset-0 justify-center'>
+          <div className='cursor-pointer flex justify-center items-center z-40 bg-red-500 w-10 h-10 rounded-full absolute top-5 left-5 hover:bg-opacity-80 transition-all transform hover:scale-110 duration-300'>
+            <img
+              src={closeIcon}
+              onClick={() => toggleViewPager(false)}
+              className='w-4'
+              alt='close view pager'
+            />
+          </div>
 
           <ProjectViewPager
             startIndex={gridIndex}

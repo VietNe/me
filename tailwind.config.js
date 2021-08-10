@@ -63,6 +63,7 @@ module.exports = {
         full: "100%",
         "1/2-screen": "50vh",
         "3/4-screen": "75vh",
+        "3/5-screen": "60vh",
       },
       backdropBlur: {
         xs: "1.2px",

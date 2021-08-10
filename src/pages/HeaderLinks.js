@@ -84,12 +84,12 @@ const HeaderLinks = ({
           <Div className='header_link_container'>
             <Div row className='bodytype_container'>
               <div
-                className='hover:opacity-50 text-white cursor-pointer transition-opacity duration-500 ease-linear text-base font-bold'
+                className='hover:opacity-50 text-white cursor-pointer transition-opacity duration-500 ease-linear text-base font-black'
                 onClick={onClickTimeline}>
                 Timeline
               </div>
               <div
-                className='hover:opacity-50 text-white cursor-pointer transition-opacity duration-500 ease-linear text-base font-bold ml-3'
+                className='hover:opacity-50 text-white cursor-pointer transition-opacity duration-500 ease-linear text-base font-black ml-3'
                 onClick={onClickProject}>
                 Tech
               </div>

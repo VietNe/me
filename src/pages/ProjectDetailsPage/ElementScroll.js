@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useEffect, useRef, useState } from "react";
+import React, { Fragment, memo, useState } from "react";
 import { animated } from "react-spring";
 
 const ElementScroll = ({
@@ -10,12 +10,7 @@ const ElementScroll = ({
   isPageRedirectedFromListing,
 }) => {
   const imageWidth = 150;
-  const [titleWidth, setTitleWidth] = useState(100);
-  const titleRef = useRef(null);
-
-  useEffect(() => {
-    setTitleWidth(titleRef.current.getBoundingClientRect().width);
-  }, []);
+  const [titleWidth] = useState(140);
 
   // ------------------------------------------------IMAGE ANIMATION
   const imgTopAnim = st.to((o) => (70 - o / 2 > 0 ? 70 - o / 2 : 0));
@@ -40,9 +35,10 @@ const ElementScroll = ({
   // const titleLeftAnim = st.to((o) =>
   //   o === 0 ? 0 : titleWidth / 17 + o / 7 > 30 ? 30 : titleWidth / 17 + o / 7
   // );
-  const titleLeftAnim = st.to((o) =>
-    titleWidth * (o / 100) > 30 ? 30 : titleWidth * (o / 100)
-  );
+  const titleLeftAnim = st.to((o) => {
+    return titleWidth * (o / 100) > 30 ? 30 : titleWidth * (o / 100);
+  });
+
   const titleSizeAnim = st.to(
     (o) => `scale(${1 - o / 2 / 100 < 0.5 ? 0.5 : 1 - o / 2 / 100})`
   );
@@ -68,9 +64,9 @@ const ElementScroll = ({
       />
 
       <animated.div
-        ref={titleRef}
+        // ref={titleRef}
         rel='noreferrer'
-        className={`leading-none whitespace-nowrap absolute text-pw-grey font-bold text-4xl `}
+        className={`leading-none whitespace-nowrap absolute text-pw-grey font-black text-4xl `}
         style={{
           transform: titleSizeAnim,
           left: titleLeftAnim,
