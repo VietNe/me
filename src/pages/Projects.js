@@ -15,7 +15,7 @@ const Projects = () => {
   };
 
   const tech = find(techList, (techItem) => {
-    return techItem.id == selectedTechId;
+    return techItem.id === selectedTechId;
   });
 
   return (
@@ -81,7 +81,7 @@ const Projects = () => {
                       {tech.name}
                     </div>
 
-                    <Div className='description_container mt-3 ml-4 items-center md:items-start'>
+                    <Div className='description_container text-white mt-3 ml-4 items-center md:items-start'>
                       <div className='text-sm break-words'>
                         {tech.description}
                       </div>

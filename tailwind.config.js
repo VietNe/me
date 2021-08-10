@@ -11,6 +11,11 @@ module.exports = {
     textColor: (theme) => ({
       ...theme("colors"),
       "pw-grey": "#333333",
+      "pw-grey-2": "#878787",
+    }),
+    borderColor: (theme) => ({
+      ...theme("colors"),
+      "pw-grey": "#333333",
     }),
     gradientColorStops: (theme) => ({
       ...theme("colors"),

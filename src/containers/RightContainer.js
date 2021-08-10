@@ -10,7 +10,6 @@ const RightContainer = ({ item, className }) => {
   const getSlideObject = (projects) => {
     return map(projects, (project, index) => {
       const state = index === 0 ? "CENTERED" : "LIST";
-      console.log(project, "asdasdsadasd");
       return {
         ...projectsListValue[project],
         slug: project,
@@ -139,7 +138,6 @@ const RightContainer = ({ item, className }) => {
       });
     }
   }, [item, projects]);
-  console.log(projects);
   return (
     <Div justify className={`w-full h-full z-3 ${className}`}>
       <Transition

@@ -2,6 +2,8 @@ import React, { Suspense } from "react";
 import Div from "~components/Div";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import ProjectDetailsPage from "./ProjectDetailsPage";
+import AnimationLifecycle from "~containers/AnimationLifecycle";
 const Landing = React.lazy(() => import("./Landing"));
 
 const App = () => {
@@ -12,6 +14,19 @@ const App = () => {
           <Switch>
             <Route path='/'>
               <Landing />
+              <Route
+                exact
+                path='/project/:projectSlug?'
+                children={(props) => (
+                  <AnimationLifecycle
+                    component={ProjectDetailsPage}
+                    whenToRender={(match) =>
+                      match && match.params && match.params.projectSlug
+                    }
+                    {...props}
+                  />
+                )}
+              />
             </Route>
           </Switch>
         </Suspense>

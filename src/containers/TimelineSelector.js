@@ -23,7 +23,6 @@ const TimelineSelector = ({
     }
   };
 
-  console.log(listValue);
   return (
     <div
       className={`md:absolute mb-5 top-0 left-0 w-full flex-row bg-pw-grey-70  md:w-screen-30 ${

@@ -1,12 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
 .button {
   font-size: 14px;
   border-radius: 7.8px;
-  margin-top: 22px;
-  border: solid 1px white;
+  border: solid 1px;
   padding: 3px 14px;
   font-weight: bold;
   cursor: pointer;
@@ -27,4 +27,12 @@
 .project-card:hover .overlay {
   transform: scale(1);
   opacity: 1;
+}
+
+.highlight_green {
+  background-color: rgb(76 175 80 / 20%);
+}
+
+.highlight_blue {
+  background-color: rgb(33 150 243 / 20%);
 }

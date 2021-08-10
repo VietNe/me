@@ -97,7 +97,7 @@ const Timeline = () => {
                       {timeline.companyName}
                     </div>
 
-                    <Div className='description_container mt-3 ml-4 items-center md:items-start'>
+                    <Div className='description_container text-white mt-3 ml-4 items-center md:items-start'>
                       <div className='text-sm break-words'>
                         {timeline.duration}
                       </div>
@@ -107,7 +107,7 @@ const Timeline = () => {
                       <div className='text-sm break-words mt-2'>
                         {timeline.location}
                       </div>
-                      <div className='button'>view more</div>
+                      <div className='button mt-7'>view more</div>
                     </Div>
                   </Div>
                 )
