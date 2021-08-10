@@ -3,6 +3,10 @@ import React, { memo, useEffect, useState } from "react";
 import { Spring, Transition } from "react-spring";
 import { Div, PaginationButton, ProjectItem } from "~components";
 import { projectsListValue } from "~constants/projectsConstants";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 const RightContainer = ({ item, className }) => {
   const [projects, setProjects] = useState({});
@@ -35,9 +39,9 @@ const RightContainer = ({ item, className }) => {
         return {
           minHeight: 300,
           height: "50vh",
-          width: 209,
-          minWidth: 209,
-          marginLeft: -246,
+          width: 229,
+          minWidth: 229,
+          marginLeft: -266,
           marginBottom: -10,
           marginRight: 37,
         };
@@ -48,9 +52,9 @@ const RightContainer = ({ item, className }) => {
           minHeight: 300,
 
           height: "50vh",
-          width: 209,
-          minWidth: 209,
-          marginLeft: -246,
+          width: 229,
+          minWidth: 229,
+          marginLeft: -266,
           marginRight: 37,
         };
       case states.GONE:
@@ -60,16 +64,16 @@ const RightContainer = ({ item, className }) => {
           minHeight: 300,
 
           height: "50vh",
-          width: 209,
-          minWidth: 209,
-          marginLeft: -246,
+          width: 229,
+          minWidth: 229,
+          marginLeft: -266,
           marginRight: 37,
         };
       default:
         return {
           minHeight: 270,
-          width: 183,
-          minWidth: 183,
+          width: 203,
+          minWidth: 203,
           // height: 311,
           height: "45vh",
           marginLeft: 0,
@@ -138,6 +142,7 @@ const RightContainer = ({ item, className }) => {
       });
     }
   }, [item, projects]);
+
   return (
     <Div justify className={`w-full h-full z-3 ${className}`}>
       <Transition
@@ -154,7 +159,7 @@ const RightContainer = ({ item, className }) => {
               row
               style={{ ...styles, paddingLeft: 246 }}
               align='end'
-              className='h-3/4'>
+              className='h-3/4 hidden md:flex'>
               {map(projects[item.id], (project, index) => (
                 <Spring
                   key={project.slug}
@@ -172,7 +177,29 @@ const RightContainer = ({ item, className }) => {
           )
         }
       </Transition>
-      <Div className='mt-10 h-1/4' row>
+
+      <div
+        style={{ width: "100%", overflow: "auto" }}
+        className='mt-5 block md:hidden'>
+        <Swiper slidesPerView={1} navigation={true}>
+          {map(projects[item.id], (project, index) => (
+            <SwiperSlide key={index}>
+              <div className='flex justify-center'>
+                <ProjectItem
+                  project={project}
+                  noMargin
+                  style={{
+                    height: 290,
+                    width: 210,
+                    backgroundColor: "#fff",
+                  }}
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+      <Div className='mt-10 h-1/4 hidden md:flex' row>
         <PaginationButton
           isEnabled={isPrevButtonClickable}
           onClick={() => moveTo("previous")}

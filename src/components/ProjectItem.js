@@ -3,7 +3,7 @@ import Div from "./Div";
 import { useHistory, Link } from "react-router-dom";
 import { animated } from "react-spring";
 
-const ProjectItem = ({ index, project, style, className }) => {
+const ProjectItem = ({ index, project, style, className, noMargin }) => {
   const history = useHistory();
 
   const onClickContainer = (event) => {
@@ -26,7 +26,7 @@ const ProjectItem = ({ index, project, style, className }) => {
       onClick={onClickContainer}>
       <animated.div
         id='project-container'
-        style={{ ...style, zIndex: index, marginRight: 39 }}
+        style={{ ...style, zIndex: index, marginRight: noMargin ? 0 : 39 }}
         className={`project-card relative overflow-hidden transition-colors shadow-2xl rounded-2xl flex flex-col no-underline cursor-pointer bg-white ${className} ${
           project.state === "CENTERED" ? "bg-opacity-100" : "bg-opacity-80"
         }`}>

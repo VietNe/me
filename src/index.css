@@ -36,3 +36,17 @@
 .highlight_blue {
   background-color: rgb(33 150 243 / 20%);
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #333 !important;
+  padding: 25px;
+  border-radius: 50px;
+  background-color: white;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px;
+  font-weight: bold;
+}

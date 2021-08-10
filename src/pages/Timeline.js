@@ -78,7 +78,7 @@ const Timeline = () => {
           listValue={timelineListValue}
           onItemSelected={onTimelineSelected}
         />
-        <div className='w-full h-full flex flex-wrap items-start mb-6 md:mb-0'>
+        <div className='w-full h-full flex flex-wrap items-start mb-6 md:mb-0 overflow-auto md:overflow-hidden'>
           <div className='w-full md:h-full flex mb-3 md:mb-0 md:pb-10 flex-col md:w-35'>
             <div className='flex-1 hidden md:block'></div>
             <Transition

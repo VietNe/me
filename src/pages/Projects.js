@@ -40,7 +40,7 @@ const Projects = () => {
           tech
           onItemSelected={onTechSelected}
         />
-        <div className='w-full h-full flex flex-wrap items-start mb-6 md:mb-0'>
+        <div className='w-full h-full flex flex-wrap items-start mb-6 md:mb-0 overflow-auto md:overflow-hidden'>
           <div className='w-full md:h-full flex mb-3 md:mb-0 md:pb-10 flex-col md:w-35'>
             <div className='flex-1 hidden md:block'>
               <Transition
@@ -95,7 +95,7 @@ const Projects = () => {
             </Transition>
           </div>
           <div className='w-full md:h-full md:w-65'>
-            <RightContainer item={tech} className='pl-20' />
+            <RightContainer item={tech} className='md:pl-20' />
           </div>
         </div>
       </Div>
