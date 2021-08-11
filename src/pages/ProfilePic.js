@@ -1,12 +1,13 @@
 import React, { memo } from "react";
-import { useSpring, useTransition, animated } from "react-spring";
-import profilePic from "~assets/images/profile-pic.jpeg";
+import { animated, useSpring, useTransition } from "react-spring";
+import profilePicDefault from "~assets/images/profile-pic-default.jpeg";
 
 const ProfilePic = ({
   isFirstTime,
   isFullScreen,
   onClickProfilePic,
   setFirstTime,
+  profilePic,
 }) => {
   const transitionFrom =
     "translate(calc(5.5rem - 50vw), calc(50vh - 100px)) scale(1)";
@@ -54,7 +55,7 @@ const ProfilePic = ({
               ? styles.transform
               : springProps.userPicTranform,
           }}
-          src={profilePic}
+          src={profilePic ? profilePic : profilePicDefault}
           className={`w-44 h-44 origin-top-right absolute right-0 z-2 rounded-full object-cover object-center ${
             !isFullScreen ? "cursor-pointer" : ""
           }`}

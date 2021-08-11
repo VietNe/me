@@ -9,6 +9,7 @@ import Header from "./Header";
 import Projects from "./Projects";
 import Timeline from "./Timeline";
 import { Transition } from "react-spring";
+import { useSelector } from "react-redux";
 
 const Landing = () => {
   const [bodyType, setBodyType] = useState(landingPageBody.NONE);
@@ -17,6 +18,7 @@ const Landing = () => {
   const [showDescription, setShowDescription] = useState(true);
   const [clientX, setClientX] = useState(0);
   const [clientY, setClientY] = useState(0);
+  const user = useSelector((state) => state?.user);
 
   //-------------------------------------------Header Logic-------------------------------------------
 
@@ -129,11 +131,18 @@ const Landing = () => {
       />
 
       <HeaderDescription
-        {...{ showDescription, onClickTimeline, onClickProject, isFirstTime }}
+        {...{
+          showDescription,
+          onClickTimeline,
+          onClickProject,
+          isFirstTime,
+          user,
+        }}
         className='header_description'
       />
 
       <ProfilePic
+        profilePic={user?.avatar_img || null}
         {...{
           setFirstTime,
           isFirstTime,
@@ -143,6 +152,7 @@ const Landing = () => {
       />
 
       <HeaderLinks
+        links={user?.links || []}
         key='header-links'
         isFullScreen={isFullScreen}
         bodyType={bodyType}

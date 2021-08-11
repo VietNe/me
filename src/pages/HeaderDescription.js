@@ -8,6 +8,7 @@ const HeaderDescription = ({
   onClickProject,
   onClickTimeline,
   isFirstTime,
+  user,
 }) => {
   return (
     <Transition
@@ -33,14 +34,21 @@ const HeaderDescription = ({
             className='md:max-h-1/2-screen bg-pw-grey-100 font-medium text-pw-grey shadow-2xl overflow-auto text-base rounded-3xl px-10 py-5 absolute z-1 left-1/24 md:left-1/4 md:w-1/2 w-11/12 pt-28'>
             <div className='text-center'>
               Hi, <br />I am{" "}
-              <span className='font-bold text-red-500'>Viet Nguyen</span>, A Web
-              Developer with 2+ years of Web Development experience on various
-              Platforms, Passionate to build Polished, Innovative and
-              well-detailed Apps with Fluid Animations to complement the Design.
-              {/* <br/><br/> In my spare time, I usually read or play video games but mostly i try to work on new ideas and learn. */}
+              <span className='font-bold text-red-500'>
+                {user?.name || "Viet Nguyen"}
+              </span>
+              {", "}
+              {user &&
+                user?.descriptions?.map((description, index) => (
+                  <span key={index}>
+                    {description}
+                    <br />
+                    <br />
+                  </span>
+                ))}
             </div>
 
-            <Div row justify align className='mt-8 flex-wrap'>
+            <Div row justify align className='flex-wrap'>
               Checkout my
               <Div
                 align
@@ -58,7 +66,7 @@ const HeaderDescription = ({
               that I worked on.
             </Div>
 
-            <ContactComponent className='mt-7' />
+            <ContactComponent className='mt-7' links={user?.links || []} />
           </Div>
         )
       }

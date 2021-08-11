@@ -12,6 +12,7 @@ const HeaderLinks = ({
   bodyType,
   onClickTimeline,
   onClickProject,
+  links,
 }) => {
   const [showMenu, setMenuState] = useState(false);
   const transition = useTransition(isFullScreen, {
@@ -73,12 +74,12 @@ const HeaderLinks = ({
                 style={{ marginTop: "calc(20px + 2.75rem)" }}
                 className='speech_bubble_container bg-white ml-3 relative inline-block px-5 py-4 rounded-md'
                 onClick={(event) => event.stopPropagation()}>
-                <ContactComponent />
+                <ContactComponent {...{ links }} />
               </div>
             </div>
           )}
 
-          <ContactComponent isWhite className='hidden md:flex' />
+          <ContactComponent {...{ links }} isWhite className='hidden md:flex' />
 
           <Div flex></Div>
           <Div className='header_link_container'>

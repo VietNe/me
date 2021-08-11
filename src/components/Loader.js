@@ -3,35 +3,59 @@ import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import IconLoader from "~assets/icons/loader";
 import "~styles/components/Loader.css";
+import { db } from "../services/firebase";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../store/userSlice";
 
 const Loader = ({ finishLoading }) => {
-  const animate = () => {
-    const loader = anime.timeline({
-      complete: () => {
-        setTimeout(() => finishLoading(), 3000);
-      },
-    });
-
-    loader
-      .add({
-        targets: "#duck-logo",
-        opacity: 1,
-        translateY: "20vh",
-        direction: "alternate",
-        easing: "spring(1, 80, 10, 10)",
-      })
-      .add({
-        targets: "#loading",
-        opacity: 1,
-        translateY: "-15vh",
-        direction: "alternate",
-        easing: "spring(1, 100, 10, 10)",
-      });
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    const getData = async () => {
+      console.log("Get data");
+      db.collection("portfolio")
+        .doc("user")
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const data = doc.data();
+
+            dispatch(updateUser(data));
+            finishLoading();
+          } else {
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+    };
+    const animate = () => {
+      const loader = anime.timeline({
+        complete: () => {
+          getData();
+        },
+      });
+
+      loader
+        .add({
+          targets: "#duck-logo",
+          opacity: 1,
+          translateY: "20vh",
+          direction: "alternate",
+          easing: "spring(1, 80, 10, 10)",
+        })
+        .add({
+          targets: "#loading",
+          opacity: 1,
+          translateY: "-15vh",
+          direction: "alternate",
+          easing: "spring(1, 100, 10, 10)",
+        });
+    };
+
     animate();
-  }, []);
+  }, [dispatch, finishLoading]);
 
   return (
     <div className='loader'>
