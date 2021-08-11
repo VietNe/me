@@ -1,5 +1,4 @@
 .loader {
-  /* ${({ theme }) => theme.mixins.flexCenter}; */
   position: fixed;
   top: 0;
   bottom: 0;
@@ -7,24 +6,91 @@
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: #0a192f;
+  background-color: #222;
   z-index: 99;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .logo-wrapper {
-  width: max-content;
-  max-width: 70px;
-  transition: var(--transition);
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
 }
 
-.logo-wrapper svg {
+.logo-wrapper svg#duck-logo {
   display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  fill: none;
+  width: 50vh;
+  height: 50vh;
   user-select: none;
+}
+
+svg#loading {
+  width: 40vh;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 20vh);
+}
+
+@keyframes draw {
+  0% {
+    stroke: #2980b9;
+  }
+  100% {
+    stroke-dashoffset: 300;
+  }
+}
+
+@keyframes letterflash {
+  0% {
+    fill: #2980b9;
+  }
+  100% {
+    fill: #8e44ad;
+  }
+}
+
+@keyframes spinnerflash {
+  0% {
+    stroke: #2980b9;
+  }
+  100% {
+    stroke: #8e44ad;
+  }
+}
+.circle {
+  stroke-dasharray: 150;
+  animation: draw 2s linear infinite;
+}
+
+.one,
+.two,
+.three,
+.four,
+.five,
+.six {
+  animation: letterflash 2s ease-in-out infinite;
+}
+
+.six {
+  animation-delay: 0.5s;
+}
+.five {
+  animation-delay: 0.4s;
+}
+.four {
+  animation-delay: 0.3s;
+}
+.three {
+  animation-delay: 0.2s;
+}
+.two {
+  animation-delay: 0.1s;
+}
+.one {
+  animation-delay: 0s;
 }
