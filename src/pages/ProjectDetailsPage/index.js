@@ -4,7 +4,6 @@ import { animated, useSpring } from "react-spring";
 import backIcon from "~assets/icons/icon-left-arrow-dark.png";
 import closeIcon from "~assets/icons/icon-cross.png";
 import Div from "~components/Div";
-import { projectsListValue } from "~constants/projectsConstants";
 import "~styles/pages/ProjectDetails.css";
 import useBreakpoint from "../../hooks/useBreakpoint";
 import ElementScroll from "./ElementScroll";
@@ -12,6 +11,7 @@ import ElementTransition from "./ElementTransition";
 import ProjectViewPager from "./ProjectViewPager";
 import ProjectDescription from "./ProjectDescription";
 import ProjectImageGrid from "./ProjectImageGrid";
+import { useSelector } from "react-redux";
 
 const ProjectDetailsPage = ({
   match,
@@ -21,6 +21,7 @@ const ProjectDetailsPage = ({
   startPageEndAnimation,
   onPageAnimationEnd,
 }) => {
+  const projectsListValue = useSelector((state) => state?.projects);
   const projectId = match && match.params ? match.params.projectSlug : "";
   const [project] = useState(projectsListValue[projectId] || {});
   const [headerShadow, setHeaderShadow] = useState(false);
@@ -29,11 +30,12 @@ const ProjectDetailsPage = ({
   const [gridIndex, setGridIndex] = useState(0);
   const screenSize = useBreakpoint();
 
-  const { imageRect, containerRect } =
+  const { imageRect, containerRect, color } =
     location && location.state ? location.state : {};
   // Stores the listing page location onto a state
   const [listingPageImageRect] = useState(imageRect);
   const [listingPageContainerRect] = useState(containerRect);
+  const [logoColor] = useState(color);
 
   const imageRef = useRef(null);
   const isPageRedirectedFromListing =
@@ -122,6 +124,7 @@ const ProjectDetailsPage = ({
           </div>
 
           <ProjectViewPager
+            images={project?.images || []}
             startIndex={gridIndex}
             showFullscreenButton={false}
           />
@@ -130,9 +133,9 @@ const ProjectDetailsPage = ({
       <Div
         animate
         flex={2}
-        className={`left_view_pager_container bg-pw-grey bg-opacity-60 hidden lg:flex items-center justify-center`}
+        className={`left_view_pager_container bg-pw-grey bg-opacity-60 hidden lg:flex items-center justify-center relative`}
         style={containerOpacityAnimation}>
-        <ProjectViewPager />
+        {project?.images && <ProjectViewPager images={project?.images || []} />}
       </Div>
       <Div
         justify='end'
@@ -177,6 +180,7 @@ const ProjectDetailsPage = ({
           <Div className='main_container relative flex-1'>
             <Div className='self-stretch relative shadow_header mx-6 lg:mx-20'>
               <ElementScroll
+                color={logoColor || "red"}
                 {...{
                   st,
                   project,
@@ -184,6 +188,7 @@ const ProjectDetailsPage = ({
                   imageRef,
                   containerOpacityAnimation,
                   isPageRedirectedFromListing,
+                  logoColor,
                 }}
               />
             </Div>
@@ -196,16 +201,18 @@ const ProjectDetailsPage = ({
                 className='content px-6 lg:px-20'
                 project={project}
               />
-              <ProjectImageGrid
-                projectId={projectId}
-                canSelect={screenSize !== "lg"}
-                gridItemSelected={(index) => {
-                  if (screenSize !== "lg") {
-                    toggleViewPager(true);
-                  }
-                  setGridIndex(index);
-                }}
-              />
+              {project?.images && (
+                <ProjectImageGrid
+                  images={project?.images || []}
+                  canSelect={screenSize !== "lg"}
+                  gridItemSelected={(index) => {
+                    if (screenSize !== "lg") {
+                      toggleViewPager(true);
+                    }
+                    setGridIndex(index);
+                  }}
+                />
+              )}
             </animated.div>
           </Div>
         ) : null}
@@ -214,6 +221,7 @@ const ProjectDetailsPage = ({
       {/* ----------------------------Element Transition---------------------------- */}
       {componentReady && !isEmpty(project) && (
         <ElementTransition
+          color={logoColor || "red"}
           {...{
             containerOpacityAnimationApi,
             setHideTransitionElement,

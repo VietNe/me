@@ -16,6 +16,7 @@ const ElementTransition = ({
   containerOpacityAnimationApi,
   setHideTransitionElement,
   onPageAnimationEnd,
+  color,
 }) => {
   const backgroundTransitionAnimation = useSpring({
     from: reverseTransitionAnimation
@@ -60,19 +61,33 @@ const ElementTransition = ({
         }}
       />
 
-      {!hideTransitionElement && (
-        <animated.img
-          src={project.icon}
-          style={{
-            ...imageTransitionAnimation,
-            objectFit: "contain",
-            position: "absolute",
-            left: 0,
-            right: 0,
-            zIndex: 2,
-          }}
-        />
-      )}
+      {!hideTransitionElement &&
+        (project?.icon ? (
+          <animated.img
+            src={project.icon}
+            style={{
+              ...imageTransitionAnimation,
+              objectFit: "contain",
+              position: "absolute",
+              left: 0,
+              right: 0,
+              zIndex: 2,
+            }}
+          />
+        ) : (
+          <animated.div
+            className={`font-black text-9xl text-${color}-500`}
+            style={{
+              ...imageTransitionAnimation,
+              objectFit: "contain",
+              position: "absolute",
+              left: 0,
+              right: 0,
+              zIndex: 2,
+            }}>
+            {project?.name[0] || ""}
+          </animated.div>
+        ))}
     </>
   );
 };

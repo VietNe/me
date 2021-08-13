@@ -14,3 +14,18 @@ export const parseNewLine = (object) => {
 
   return reactStringReplace(object, "<br/>", newLineMatch);
 };
+
+export const randomColor = () => {
+  const colors = [
+    "red",
+    "gray",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+    "pink",
+  ];
+
+  return colors[Math.floor(Math.random() * colors.length)] || "red";
+};

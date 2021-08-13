@@ -2,8 +2,9 @@ import React from "react";
 import Div from "./Div";
 import { useHistory, Link } from "react-router-dom";
 import { animated } from "react-spring";
-
+import { randomColor } from "~utils";
 const ProjectItem = ({ index, project, style, className, noMargin }) => {
+  const color = randomColor();
   const history = useHistory();
 
   const onClickContainer = (event) => {
@@ -14,7 +15,11 @@ const ProjectItem = ({ index, project, style, className, noMargin }) => {
     const imageRect = currentTarget
       .querySelector("#project-image")
       .getBoundingClientRect();
-    history.push(`/project/${project.slug}`, { containerRect, imageRect });
+    history.push(`/project/${project.slug}`, {
+      containerRect,
+      imageRect,
+      color,
+    });
     event.preventDefault();
     event.stopPropagation();
   };
@@ -36,12 +41,20 @@ const ProjectItem = ({ index, project, style, className, noMargin }) => {
           </div>
         </div>
         <Div fillParent align justify>
-          <img
-            id='project-image'
-            src={project?.icon}
-            style={{ width: 120 }}
-            alt=''
-          />
+          {project?.icon ? (
+            <img
+              id='project-image'
+              src={project?.icon}
+              style={{ width: 120 }}
+              alt=''
+            />
+          ) : (
+            <div
+              id='project-image'
+              className={`font-black text-9xl text-${color}-500`}>
+              {project?.name[0] || ""}
+            </div>
+          )}
         </Div>
 
         <Div

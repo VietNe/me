@@ -1,26 +1,30 @@
 import { isEmpty, map } from "lodash";
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useState, useCallback } from "react";
 import { Spring, Transition } from "react-spring";
 import { Div, PaginationButton, ProjectItem } from "~components";
-import { projectsListValue } from "~constants/projectsConstants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { useSelector } from "react-redux";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 const RightContainer = ({ item, className }) => {
+  const projectsListValue = useSelector((state) => state?.projects);
   const [projects, setProjects] = useState({});
 
-  const getSlideObject = (projects) => {
-    return map(projects, (project, index) => {
-      const state = index === 0 ? "CENTERED" : "LIST";
-      return {
-        ...projectsListValue[project],
-        slug: project,
-        state,
-      };
-    });
-  };
+  const getSlideObject = useCallback(
+    (projects) => {
+      return map(projects, (project, index) => {
+        const state = index === 0 ? "CENTERED" : "LIST";
+        return {
+          ...projectsListValue[project],
+          slug: project,
+          state,
+        };
+      });
+    },
+    [projectsListValue]
+  );
 
   const getStates = () => {
     return {
@@ -39,9 +43,9 @@ const RightContainer = ({ item, className }) => {
         return {
           minHeight: 300,
           height: "50vh",
-          width: 229,
-          minWidth: 229,
-          marginLeft: -266,
+          width: 249,
+          minWidth: 249,
+          marginLeft: -286,
           marginBottom: -10,
           marginRight: 37,
         };
@@ -52,9 +56,9 @@ const RightContainer = ({ item, className }) => {
           minHeight: 300,
 
           height: "50vh",
-          width: 229,
-          minWidth: 229,
-          marginLeft: -266,
+          width: 249,
+          minWidth: 249,
+          marginLeft: -286,
           marginRight: 37,
         };
       case states.GONE:
@@ -64,16 +68,16 @@ const RightContainer = ({ item, className }) => {
           minHeight: 300,
 
           height: "50vh",
-          width: 229,
-          minWidth: 229,
-          marginLeft: -266,
+          width: 249,
+          minWidth: 249,
+          marginLeft: -286,
           marginRight: 37,
         };
       default:
         return {
           minHeight: 270,
-          width: 203,
-          minWidth: 203,
+          width: 223,
+          minWidth: 223,
           // height: 311,
           height: "45vh",
           marginLeft: 0,
@@ -135,82 +139,85 @@ const RightContainer = ({ item, className }) => {
     : false;
 
   useEffect(() => {
-    if (isEmpty(projects[item?.id])) {
+    if (item && isEmpty(projects[item?.id])) {
       setProjects({
         ...projects,
         [item.id]: getSlideObject(item?.projects),
       });
     }
-  }, [item, projects]);
+  }, [item, projects, getSlideObject]);
 
   return (
     <Div justify className={`w-full h-full z-3 ${className}`}>
-      <Transition
-        config={{ mass: 1, tension: 280, friction: 80 }}
-        items={item}
-        key={item.id}
-        from={{ opacity: 0 }}
-        enter={{ opacity: 1 }}
-        leave={{ opacity: 0 }}>
-        {(styles, item) =>
-          item && (
-            <Div
-              animate
-              row
-              style={{ ...styles, paddingLeft: 246 }}
-              align='end'
-              className='h-3/4 hidden md:flex'>
+      {projects && (
+        <>
+          <Transition
+            config={{ mass: 1, tension: 280, friction: 80 }}
+            items={item}
+            key={item.id}
+            from={{ opacity: 0 }}
+            enter={{ opacity: 1 }}
+            leave={{ opacity: 0 }}>
+            {(styles, item) =>
+              item && (
+                <Div
+                  animate
+                  row
+                  style={{ ...styles, paddingLeft: 296 }}
+                  align='end'
+                  className='h-3/4 hidden md:flex'>
+                  {map(projects[item.id], (project, index) => (
+                    <Spring
+                      key={project.slug}
+                      to={getPropertyBasedOnState(project.state)}>
+                      {(styles) => (
+                        <ProjectItem
+                          index={index}
+                          project={project}
+                          style={styles}
+                        />
+                      )}
+                    </Spring>
+                  ))}
+                </Div>
+              )
+            }
+          </Transition>
+          <div
+            style={{ width: "100%", overflow: "auto" }}
+            className='mt-5 block md:hidden'>
+            <Swiper slidesPerView={1} navigation={true}>
               {map(projects[item.id], (project, index) => (
-                <Spring
-                  key={project.slug}
-                  to={getPropertyBasedOnState(project.state)}>
-                  {(styles) => (
+                <SwiperSlide key={index}>
+                  <div className='flex justify-center'>
                     <ProjectItem
-                      index={index}
                       project={project}
-                      style={styles}
+                      noMargin
+                      style={{
+                        height: 290,
+                        width: 210,
+                        backgroundColor: "#fff",
+                      }}
                     />
-                  )}
-                </Spring>
+                  </div>
+                </SwiperSlide>
               ))}
-            </Div>
-          )
-        }
-      </Transition>
-
-      <div
-        style={{ width: "100%", overflow: "auto" }}
-        className='mt-5 block md:hidden'>
-        <Swiper slidesPerView={1} navigation={true}>
-          {map(projects[item.id], (project, index) => (
-            <SwiperSlide key={index}>
-              <div className='flex justify-center'>
-                <ProjectItem
-                  project={project}
-                  noMargin
-                  style={{
-                    height: 290,
-                    width: 210,
-                    backgroundColor: "#fff",
-                  }}
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-      <Div className='mt-10 h-1/4 hidden md:flex' row>
-        <PaginationButton
-          isEnabled={isPrevButtonClickable}
-          onClick={() => moveTo("previous")}
-          className='mx-5'
-        />
-        <PaginationButton
-          isEnabled={isNextButtonClickable}
-          onClick={() => moveTo("next")}
-          isRight
-        />
-      </Div>
+            </Swiper>
+          </div>
+          <Div className='mt-10 h-1/4 hidden md:flex' row>
+            <PaginationButton
+              isEnabled={isPrevButtonClickable}
+              onClick={() => moveTo("previous")}
+              className='mx-5'
+            />
+            <PaginationButton
+              isEnabled={isNextButtonClickable}
+              onClick={() => moveTo("next")}
+              isRight
+            />
+          </Div>
+        </>
+      )}
     </Div>
   );
 };

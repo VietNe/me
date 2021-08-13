@@ -6,13 +6,16 @@ import "~styles/components/Loader.css";
 import { db } from "../services/firebase";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../store/userSlice";
+import { updateTimeline } from "../store/timelineSlice";
+import { updateTech } from "../store/techSlice";
+import { updateProjects } from "../store/projectsSlice";
 
 const Loader = ({ finishLoading }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getData = async () => {
-      console.log("Get data");
+      // Get Profile
       db.collection("portfolio")
         .doc("user")
         .get()
@@ -21,10 +24,49 @@ const Loader = ({ finishLoading }) => {
             const data = doc.data();
 
             dispatch(updateUser(data));
-            finishLoading();
           } else {
             console.log("No such document!");
           }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+      // Get Timeline
+      db.collection("timeline")
+        .get()
+        .then((querySnapshot) => {
+          let list = [];
+          querySnapshot.forEach((doc) => {
+            list.push(doc.data());
+          });
+          dispatch(updateTimeline(list));
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+      // Get tech
+      db.collection("tech")
+        .get()
+        .then((querySnapshot) => {
+          let list = [];
+          querySnapshot.forEach((doc) => {
+            list.push(doc.data());
+          });
+          dispatch(updateTech(list));
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+      // Get projects
+      db.collection("projects")
+        .get()
+        .then((querySnapshot) => {
+          let list = {};
+          querySnapshot.forEach((doc) => {
+            list[doc.id] = doc.data();
+          });
+          dispatch(updateProjects(list));
+          finishLoading();
         })
         .catch((error) => {
           console.log("Error getting document:", error);

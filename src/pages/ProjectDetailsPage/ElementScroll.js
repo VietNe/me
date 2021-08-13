@@ -2,6 +2,7 @@ import React, { Fragment, memo, useState } from "react";
 import { animated } from "react-spring";
 
 const ElementScroll = ({
+  color,
   project,
   st,
   imageRef,
@@ -9,7 +10,7 @@ const ElementScroll = ({
   hideTransitionElement,
   isPageRedirectedFromListing,
 }) => {
-  const imageWidth = 150;
+  const imageWidth = project?.icon ? 150 : 79;
   const [titleWidth] = useState(140);
 
   // ------------------------------------------------IMAGE ANIMATION
@@ -17,6 +18,9 @@ const ElementScroll = ({
   const imgWidthAnim = st.to((o) =>
     imageWidth - o / 1.5 > 48 ? imageWidth - o / 1.5 : 48
   );
+
+  const fontSizeAnim = st.to((o) => `${8 - o / 50 < 3 ? 3 : 8 - o / 50}rem`);
+
   const imgLeftAnim = st.to(
     (o) =>
       `calc(${50 - o / 1.5 / 3 > 0 ? 50 - o / 1.5 / 3 : 0}% - ${
@@ -45,23 +49,41 @@ const ElementScroll = ({
 
   return (
     <Fragment>
-      <animated.img
-        ref={imageRef}
-        className='absolute object-contain '
-        src={project.icon}
-        alt='project logo'
-        style={{
-          width: imgWidthAnim,
-          height: imgWidthAnim,
-          left: imgLeftAnim,
-          top: imgTopAnim,
-          // when transition from listing page don't animate opacity just make visibilty show/hide immediatly
-          // when being navigated directly to this page .. then animate opacity
-          opacity: isPageRedirectedFromListing
-            ? +hideTransitionElement // +true = 1
-            : containerOpacityAnimation.opacity,
-        }}
-      />
+      {project?.icon ? (
+        <animated.img
+          ref={imageRef}
+          className='absolute object-contain '
+          src={project?.icon}
+          alt='project logo'
+          style={{
+            width: imgWidthAnim,
+            height: imgWidthAnim,
+            left: imgLeftAnim,
+            top: imgTopAnim,
+            // when transition from listing page don't animate opacity just make visibilty show/hide immediatly
+            // when being navigated directly to this page .. then animate opacity
+            opacity: isPageRedirectedFromListing
+              ? +hideTransitionElement // +true = 1
+              : containerOpacityAnimation.opacity,
+          }}
+        />
+      ) : (
+        <animated.div
+          ref={imageRef}
+          className={`font-black text-9xl text-${color}-500 absolute z-10 select-none `}
+          style={{
+            fontSize: fontSizeAnim,
+            left: imgLeftAnim,
+            top: imgTopAnim,
+            // when transition from listing page don't animate opacity just make visibilty show/hide immediatly
+            // when being navigated directly to this page .. then animate opacity
+            opacity: isPageRedirectedFromListing
+              ? +hideTransitionElement // +true = 1
+              : containerOpacityAnimation.opacity,
+          }}>
+          {project?.name[0] || ""}
+        </animated.div>
+      )}
 
       <animated.div
         // ref={titleRef}

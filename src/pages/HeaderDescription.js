@@ -48,7 +48,7 @@ const HeaderDescription = ({
                 ))}
             </div>
 
-            <Div row justify align className='flex-wrap'>
+            <Div row justify align className='flex-wrap text-center'>
               Checkout my
               <Div
                 align
@@ -65,8 +65,14 @@ const HeaderDescription = ({
               </Div>
               that I worked on.
             </Div>
+            <div className='text-center'>
+              <br />
+              <br />
+              You can see more of me below if you're interested. Have a good
+              day!
+            </div>
 
-            <ContactComponent className='mt-7' links={user?.links || []} />
+            <ContactComponent className='my-4' links={user?.links || []} />
           </Div>
         )
       }

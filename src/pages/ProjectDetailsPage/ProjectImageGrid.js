@@ -3,19 +3,7 @@ import React from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { Div } from "~components";
 
-const ProjectImageGrid = ({ projectId, canSelect, gridItemSelected }) => {
-  const images = [
-    "https://picsum.photos/200/300?image=1050",
-    "https://picsum.photos/400/400?image=1039",
-    "https://picsum.photos/400/400?image=1080",
-    "https://picsum.photos/200/200?image=997",
-    "https://picsum.photos/500/400?image=287",
-    "https://picsum.photos/400/500?image=955",
-    "https://picsum.photos/200/300?image=916",
-    "https://picsum.photos/300/300?image=110",
-    "https://picsum.photos/300/300?image=206",
-  ];
-
+const ProjectImageGrid = ({ canSelect, gridItemSelected, images }) => {
   return (
     <Div row className={` flex-wrap mx-6 lg:mx-20`}>
       <div className='font-bold mb-5 ml-3'>Images: </div>
@@ -28,14 +16,14 @@ const ProjectImageGrid = ({ projectId, canSelect, gridItemSelected }) => {
                   <div
                     key={index}
                     className={`${
-                      canSelect && "hover:opacity-80cursor-pointer"
+                      canSelect && "hover:opacity-80 cursor-pointer"
                     }  transition-opacity duration-200`}
                     onClick={() => gridItemSelected(index)}>
                     <img
                       key={index}
-                      src={projectImage}
+                      src={projectImage.link}
                       style={{ width: "100%", display: "block" }}
-                      alt=''
+                      alt={projectImage.alt}
                     />
                   </div>
                 );

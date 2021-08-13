@@ -1,6 +1,8 @@
 import goCodeeLogoFirst from "~assets/images/gocodee-logo-first.png";
 
 import goCodeeBackgroundImage from "~assets/images/background/background-image-gocodee.jpg";
+import goCodeeBackgroundImage1 from "~assets/images/background/background-image-college.jpg";
+import goCodeeBackgroundImage2 from "~assets/images/background/background-image-nykaa.jpg";
 
 export const timelineListValue = [
   {
@@ -30,7 +32,7 @@ export const timelineListValue = [
     companyDetail: "",
     firstLogo: goCodeeLogoFirst,
 
-    backgroundImage: goCodeeBackgroundImage,
+    backgroundImage: goCodeeBackgroundImage2,
     projects: ["Project1", "Project2"],
   },
   {
@@ -45,7 +47,7 @@ export const timelineListValue = [
     companyDetail: "",
     firstLogo: goCodeeLogoFirst,
 
-    backgroundImage: goCodeeBackgroundImage,
+    backgroundImage: goCodeeBackgroundImage1,
     projects: ["Project1"],
   },
   // {
