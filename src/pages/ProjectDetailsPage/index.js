@@ -70,7 +70,7 @@ const ProjectDetailsPage = ({
 
   // On Component Mount
   useEffect(() => {
-    setDescriptionPageImageRect(imageRef.current.getBoundingClientRect());
+    setDescriptionPageImageRect(imageRef?.current?.getBoundingClientRect());
     if (!isPageRedirectedFromListing) {
       containerOpacityAnimationApi.start({ opacity: 1 });
       setHideTransitionElement(true);
@@ -90,7 +90,7 @@ const ProjectDetailsPage = ({
     if (startPageEndAnimation) {
       if (isPageRedirectedFromListing) {
         // start page end animation
-        setDescriptionPageImageRect(imageRef.current.getBoundingClientRect());
+        setDescriptionPageImageRect(imageRef?.current?.getBoundingClientRect());
         containerOpacityAnimationApi.start({
           opacity: 0,
           onRest: () => {

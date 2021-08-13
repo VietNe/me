@@ -1,10 +1,10 @@
 import React, { Suspense, useState } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Div from "~components/Div";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Loader from "~components/Loader";
-
-import ProjectDetailsPage from "./ProjectDetailsPage";
 import AnimationLifecycle from "~containers/AnimationLifecycle";
+import ProjectDetailsPage from "./ProjectDetailsPage";
+
 const Landing = React.lazy(() => import("./Landing"));
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
                   <Landing />
                   <Route
                     exact
-                    path='/project/:projectSlug?'
+                    path='/project/:projectSlug'
                     children={(props) => (
                       <AnimationLifecycle
                         component={ProjectDetailsPage}
