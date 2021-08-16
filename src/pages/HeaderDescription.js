@@ -63,7 +63,7 @@ const HeaderDescription = ({
                 onClick={onClickProject}>
                 Technologies <Underline isFirstTime={isFirstTime} />
               </Div>
-              that I worked on.
+              to see featured projects I worked on.
             </Div>
             <div className='text-center'>
               <br />

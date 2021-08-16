@@ -42,6 +42,7 @@ const RightContainer = ({ item, className }) => {
       case states.CENTERED:
         return {
           minHeight: 300,
+          maxHeight: 410,
           height: "50vh",
           width: 249,
           minWidth: 249,
@@ -54,6 +55,7 @@ const RightContainer = ({ item, className }) => {
           opacity: 1,
           marginBottom: -20,
           minHeight: 300,
+          maxHeight: 410,
 
           height: "50vh",
           width: 249,
@@ -66,6 +68,7 @@ const RightContainer = ({ item, className }) => {
           marginBottom: -30,
           opacity: 0,
           minHeight: 300,
+          maxHeight: 410,
 
           height: "50vh",
           width: 249,
@@ -76,6 +79,7 @@ const RightContainer = ({ item, className }) => {
       default:
         return {
           minHeight: 270,
+          maxHeight: 370,
           width: 223,
           minWidth: 223,
           // height: 311,
