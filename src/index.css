@@ -63,7 +63,7 @@
 .image-gallery-thumbnail.active,
 .image-gallery-thumbnail:focus,
 .image-gallery-thumbnail:hover {
-  border-color: #f0a04b !important;
+  border-color: #fbae17 !important;
   opacity: 1 !important;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .image-gallery-icon:hover {
-  color: #f0a04b !important;
+  color: #fbae17 !important;
 }
 
 .image-gallery-right-nav .image-gallery-svg,

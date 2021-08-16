@@ -34,7 +34,7 @@ const HeaderDescription = ({
             className='md:max-h-1/2-screen bg-pw-grey-100 font-medium text-pw-grey shadow-2xl overflow-auto text-base rounded-3xl px-10 py-5 absolute z-1 left-1/24 md:left-1/4 md:w-1/2 w-11/12 pt-28'>
             <div className='text-center'>
               Hi, <br />I am{" "}
-              <span className='font-bold text-red-500'>
+              <span style={{ color: "#fbae17" }} className='font-bo'>
                 {user?.name || "Viet Nguyen"}
               </span>
               {", "}

@@ -14,83 +14,63 @@
 }
 
 .logo-wrapper {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
 }
 
-.logo-wrapper svg#duck-logo {
+.logo-wrapper svg#logo {
   display: block;
-  width: 50vh;
-  height: 50vh;
+  width: 50vw;
   user-select: none;
 }
 
-svg#loading {
-  width: 40vh;
-  display: block;
+.loading {
+  transform: scale(0.1);
   opacity: 0;
+}
+
+.text {
+  color: #fbae17;
+  display: inline-block;
+  margin-left: 20px;
+  font-size: 30px;
+}
+
+.bounceball {
+  position: relative;
+  display: inline-block;
+  height: 67px;
+  width: 15px;
+}
+
+.bounceball:before {
   position: absolute;
-  bottom: 0;
-  left: calc(50% - 20vh);
+  content: "";
+  display: block;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #fbae17;
+  transform-origin: 50%;
+  animation: bounce1 500ms alternate infinite ease;
 }
 
-@keyframes draw {
+@keyframes bounce1 {
   0% {
-    stroke: #2980b9;
+    top: 60px;
+    height: 5px;
+    border-radius: 60px 60px 20px 20px;
+    transform: scaleX(2);
+  }
+  35% {
+    height: 15px;
+    border-radius: 50%;
+    transform: scaleX(1);
   }
   100% {
-    stroke-dashoffset: 300;
+    top: 0;
   }
-}
-
-@keyframes letterflash {
-  0% {
-    fill: #2980b9;
-  }
-  100% {
-    fill: #8e44ad;
-  }
-}
-
-@keyframes spinnerflash {
-  0% {
-    stroke: #2980b9;
-  }
-  100% {
-    stroke: #8e44ad;
-  }
-}
-.circle {
-  stroke-dasharray: 150;
-  animation: draw 2s linear infinite;
-}
-
-.one,
-.two,
-.three,
-.four,
-.five,
-.six {
-  animation: letterflash 2s ease-in-out infinite;
-}
-
-.six {
-  animation-delay: 0.5s;
-}
-.five {
-  animation-delay: 0.4s;
-}
-.four {
-  animation-delay: 0.3s;
-}
-.three {
-  animation-delay: 0.2s;
-}
-.two {
-  animation-delay: 0.1s;
-}
-.one {
-  animation-delay: 0s;
 }

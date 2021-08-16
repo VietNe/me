@@ -170,7 +170,7 @@ const ProjectDetailsPage = ({
                 href={project?.link?.value}
                 className='button border-pw-grey mt-0 border'
                 target='_blank'>
-                Visit
+                {project?.link?.type}
               </a>
             ) : null}
           </Div>
