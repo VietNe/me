@@ -27,7 +27,7 @@ const Projects = () => {
       row
       fillParent
       align='stretch'
-      className='pt-20 md:pl-20 px-6 md:px-0 relative overflow-hidden'>
+      className='pt-20 md:pl-20 px-6 md:px-0 relative overflow-hidden items-stretch'>
       <img
         src={techDoodleImage}
         className='absolute object-cover object-left-top opacity-40 top-0 left-0 w-screen h-screen'
