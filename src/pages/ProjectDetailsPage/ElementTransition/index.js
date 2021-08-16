@@ -76,7 +76,7 @@ const ElementTransition = ({
           />
         ) : (
           <animated.div
-            className={`font-black text-9xl text-${color}-500`}
+            className={`font-black text-9xl ${color}`}
             style={{
               ...imageTransitionAnimation,
               objectFit: "contain",

@@ -17,14 +17,14 @@ export const parseNewLine = (object) => {
 
 export const randomColor = () => {
   const colors = [
-    "red",
-    "gray",
-    "yellow",
-    "green",
-    "blue",
-    "indigo",
-    "purple",
-    "pink",
+    "text-red-500",
+    "text-gray-500",
+    "text-yellow-500",
+    "text-green-500",
+    "text-blue-500",
+    "text-indigo-500",
+    "text-purple-500",
+    "text-pink-500",
   ];
 
   return colors[Math.floor(Math.random() * colors.length)] || "red";

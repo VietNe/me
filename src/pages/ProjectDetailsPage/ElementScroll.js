@@ -70,7 +70,7 @@ const ElementScroll = ({
       ) : (
         <animated.div
           ref={imageRef}
-          className={`font-black text-9xl text-${color}-500 absolute z-10 select-none `}
+          className={`font-black text-9xl ${color} absolute z-10 select-none `}
           style={{
             fontSize: fontSizeAnim,
             left: imgLeftAnim,

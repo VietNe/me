@@ -49,9 +49,7 @@ const ProjectItem = ({ index, project, style, className, noMargin }) => {
               alt=''
             />
           ) : (
-            <div
-              id='project-image'
-              className={`font-black text-9xl text-${color}-500`}>
+            <div id='project-image' className={`font-black text-9xl ${color}`}>
               {project?.name[0] || ""}
             </div>
           )}
