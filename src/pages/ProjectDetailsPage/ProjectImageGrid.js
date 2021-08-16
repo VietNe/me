@@ -6,7 +6,7 @@ import { Div } from "~components";
 const ProjectImageGrid = ({ canSelect, gridItemSelected, images }) => {
   return (
     <Div row className={` flex-wrap mx-6 lg:mx-20`}>
-      <div className='font-bold mb-5 ml-3'>Images: </div>
+      <div className='font-bold text-lg mb-5 ml-3'>Images: </div>
       <div className='w-full'>
         {images && (
           <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 768: 2 }}>

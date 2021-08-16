@@ -51,8 +51,7 @@ const HeaderLinks = ({
             showMenu ? "z-2" : ""
           }`}>
           <Div
-            justify='between'
-            className={`md:hidden cursor-pointer transform transition-all duration-500 z-4 h-4 w-5 ${
+            className={`md:hidden cursor-pointer transform transition-all justify-between duration-500 z-4 h-4 w-5 ${
               showMenu ? "translate-y-2" : ""
             }`}
             onClick={() => setMenuState(!showMenu)}>

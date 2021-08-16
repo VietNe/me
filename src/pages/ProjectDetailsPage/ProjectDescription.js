@@ -19,13 +19,12 @@ const ProjectDescription = ({ project, className }) => {
     <Div align='stretch' className={`text-base text-pw-grey ${className}`}>
       <Div
         row
-        justify='between'
-        className='sub_info_container text-base font-medium text-pw-grey pb-5'>
+        className='sub_info_container text-base font-medium text-pw-grey pb-5 justify-between'>
         <Div>
           <div className='text-pw-grey-2'>Platform</div>
           <div className='capitalize'>{tech.join(" | ")}</div>
         </Div>
-        <Div align='end'>
+        <Div className='items-end'>
           <div className='text-pw-grey-2'>Project Involment</div>
           <div className='capitalize'>{involvement}</div>
         </Div>
