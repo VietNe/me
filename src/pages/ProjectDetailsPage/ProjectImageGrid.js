@@ -17,7 +17,7 @@ const ProjectImageGrid = ({ canSelect, gridItemSelected, images }) => {
                     key={index}
                     className={`${
                       canSelect && "hover:opacity-80 cursor-pointer"
-                    } border border-grey-200 transition-opacity duration-200`}
+                    } border border-pw-grey-500 transition-opacity duration-200`}
                     onClick={() => gridItemSelected(index)}>
                     <img
                       key={index}

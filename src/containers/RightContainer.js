@@ -198,7 +198,7 @@ const RightContainer = ({ item, className }) => {
                       project={project}
                       noMargin
                       style={{
-                        height: 290,
+                        height: 340,
                         width: 210,
                         backgroundColor: "#fff",
                       }}
