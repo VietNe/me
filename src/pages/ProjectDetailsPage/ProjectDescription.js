@@ -48,7 +48,7 @@ const ProjectDescription = ({ project, className }) => {
               {description.title ? (
                 <div className=' font-bold'>{description.title}</div>
               ) : null}
-              <ul className='list-disc ml-10'>
+              <ul className='list-disc ml-10 mb-3'>
                 {map(description.value, (value, index) => (
                   <li key={index}>{value}</li>
                 ))}

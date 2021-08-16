@@ -67,7 +67,6 @@ const HeaderDescription = ({
             </Div>
             <div className='text-center'>
               <br />
-              <br />
               You can see more of me below if you're interested. Have a good
               day!
             </div>
